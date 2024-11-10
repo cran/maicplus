@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<meta name="date" content="2024-11-07" />
+
+<title>Introduction</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+
+
+
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction</h1>
+<h4 class="date">2024-11-07</h4>
+
+
+
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Health technology assessments and appraisals necessitate dependable
+estimations of relative treatment effects to guide reimbursement
+determinations. In instances where direct comparative evidence is
+lacking, yet both treatments under scrutiny have been separately
+evaluated against a shared comparator (e.g., placebo or standard care),
+a conventional indirect comparison can be conducted utilizing published
+aggregate data from each study.</p>
+<p>This document outlines the procedures for conducting a
+matching-adjusted indirect comparison (MAIC) analysis. MAIC is suitable
+when individual patient data from one trial and aggregate data from
+another are accessible. The analysis focuses on endpoints such as
+time-to-event (e.g., overall survival) or binary outcomes (e.g.,
+objective tumor response).</p>
+<p>The methodologies detailed herein are based on the original work by
+Signorovitch et al. (2010) and further elucidated in the National
+Institute for Health and Care Excellence (NICE) Decision Support Unit
+(DSU) Technical Support Document (TSD) 18. <span class="citation">[1,2]</span></p>
+<p>A clinical trial lacking a common comparator treatment to link it
+with other trials is termed an unanchored MAIC. Without a common
+comparator, it becomes challenging to directly compare the outcomes of
+interest between different treatments or interventions. Conversely, if a
+common comparator is available, it is termed an anchored MAIC. An
+anchored indirect comparison is preferred as it respects the
+randomization within studies and removes confounding bias.</p>
+<p>MAIC methods aim to adjust for between-study differences in patient
+demographics or disease characteristics at baseline. In scenarios where
+a common treatment comparator is absent, MAIC assumes that observed
+differences in absolute outcomes between trials are solely attributable
+to imbalances in prognostic variables and effect modifiers. This
+assumption requires that all imbalanced prognostic variables and effect
+modifiers between the studies are known, which is often challenging to
+fulfill. <span class="citation">[2]</span></p>
+<p>Various approaches exist for identifying prognostic variables and
+effect modifiers for use in MAIC analyses. These include clinical
+consultation with experts, review of published literature, examination
+of previous regulatory submissions, and data-driven methods such as
+regression modeling and subgroup analysis to uncover interactions
+between baseline characteristics and treatment effects.</p>
+</div>
+<div id="statistical-theory-behind-maic" class="section level1">
+<h1>Statistical theory behind MAIC</h1>
+<p>The matching is accomplished by re-weighting patients in the study
+with the individual patient data (IPD) by their odds of having been
+enrolled in the aggregate data (AGD) study versus the IPD study. The
+approach is very similar to inverse probability of treatment weighting
+with the difference that IPD is not available for one study, so the
+usual maximum likelihood approach cannot be used to estimate the
+parameters. Instead, a method of moments is used. After the matching is
+complete and weights have been added to the IPD, it is possible to
+estimate the weighted outcomes and compare the results across.</p>
+<p>The mapping approach can be described as follows: assuming that each
+trial has one arm, each patient can be characterized by the following
+random triple (<span class="math inline">\(X\)</span>, <span class="math inline">\(T\)</span>, <span class="math inline">\(Y\)</span>), where <span class="math inline">\(X\)</span> represents the baseline characteristics
+(e.g., age and weight), <span class="math inline">\(T\)</span>
+represents the treatment of interest (e.g., <span class="math inline">\(T = A\)</span> for the IPD study and <span class="math inline">\(T = B\)</span> for the study with AGD), and <span class="math inline">\(Y\)</span> is the outcome of interest (e.g.,
+overall survival).</p>
+<p>Each patient is characterized by a random triple (<span class="math inline">\(x_i\)</span>, <span class="math inline">\(t_i\)</span>, <span class="math inline">\(y_i\)</span>) with <span class="math inline">\(i=1\)</span> to <span class="math inline">\(n\)</span> but only when IPD is available, i.e.,
+when <span class="math inline">\(t_i = A\)</span>. In case where <span class="math inline">\(t_i = B\)</span>, only the mean baseline
+characteristics <span class="math inline">\(\bar{x}_{agg}\)</span> and
+mean outcome <span class="math inline">\(\bar{y}_{agg}\)</span> are
+observed.</p>
+<p>Given the observed data, the causal effect of treatment <span class="math inline">\(T = A\)</span> versus <span class="math inline">\(T = B\)</span> on the mean of <span class="math inline">\(Y\)</span> can be estimated as follows:</p>
+<p><span class="math display">\[
+\frac{\sum_{i=1}^{n}y_{i}w_{i}}{\sum_{i=1}^{n}w_{i}}-\bar{y}_{agg}
+\]</span></p>
+<p>where <span class="math inline">\(w_i=\frac{Pr(T_i=B\mid
+x_i)}{Pr(T_i=A\mid x_i)}\)</span>. Thus, the patients receiving <span class="math inline">\(T=A\)</span> are re-weighted to match the
+distribution of patients receiving <span class="math inline">\(T=B\)</span>. Note that this causal effect would
+be the case when the outcome <span class="math inline">\(Y\)</span> is
+continuous. If the outcome is binary, <span class="math inline">\(Y\)</span> would be a proportion and we would use
+a link function such as logit to give us the causal effect in an odds
+ratio scale. We assume <span class="math inline">\(w_i\)</span> to
+follow logistic regression form.</p>
+<p><span class="math display">\[
+w_{i}=exp(x_i^{T}\beta)
+\]</span></p>
+<p>In order to estimate <span class="math inline">\(\beta\)</span>, we
+use method of moments. We estimate <span class="math inline">\(\beta\)</span> such that the weighted averages of
+the covariates in the IPD exactly matches the aggregate data averages.
+Mathematically speaking, we estimate <span class="math inline">\(\beta\)</span> such that:</p>
+<p><span class="math display">\[
+0=\frac{\sum_{i=1}^{n}x_{i}exp(x_i^{T}\hat{\beta})}{\sum_{i=1}^{n}exp(x_i^{T}\hat{\beta})}-\bar{x}_{agg}
+\]</span></p>
+<p>This equation is equivalent to</p>
+<p><span class="math display">\[
+0=\sum_{i=1}^{n}(x_{i}-\bar{x}_{agg})exp(x_{i}^{T}\hat{\beta})
+\]</span></p>
+<p>It is possible to use this estimator since a logistic regression
+model for the odds of receiving <span class="math inline">\(T =
+B\)</span> vs <span class="math inline">\(T = A\)</span> would, by
+definition, provide the correct weights for balancing the trial
+populations. If the <span class="math inline">\(x_i\)</span> contains
+all the confounders and the logistic model for <span class="math inline">\(w_i\)</span> is correctly specified, then <span class="math inline">\(\hat{\theta}\)</span> in the next equation
+provides a consistent estimate of the causal effect of treatment <span class="math inline">\(T = A\)</span> vs <span class="math inline">\(T =
+B\)</span> on the mean of <span class="math inline">\(Y\)</span> among
+patients.</p>
+<p><span class="math display">\[
+\hat{\theta}=\frac{\sum_{i=1}^{n}y_{i}exp(x_i^{T}\hat{\beta})}{\sum_{i=1}^{n}exp(x_i^{T}\hat{\beta})}-\bar{y}_{agg}
+\]</span></p>
+<p>In order to solve the equation set up by the methods of moments, we
+could transform IPD by subtracting the aggregate data means. Then <span class="math inline">\(\bar{x}_{agg}\)</span> would equal 0 and the
+equation would simplify. This is why IPD is centered in the
+preprocessing step.</p>
+<p><span class="math display">\[
+0=\sum_{i=1}^{n}x_{i}exp(x_{i}^{T}\hat{\beta})
+\]</span></p>
+<p>Note that this is the first derivative of</p>
+<p><span class="math display">\[
+Q(\beta)=\sum_{i=1}^{n}exp(x_{i}^{T}\hat{\beta})
+\]</span></p>
+<p>which has second derivative</p>
+<p><span class="math display">\[
+Q&#39;&#39;(\beta)=\sum_{i=1}^{n}x_ix_i^Texp(x_{i}^{T}\hat{\beta})
+\]</span></p>
+<p>Since <span class="math inline">\(Q&#39;&#39;(\beta)\)</span> is
+positive-definite for all <span class="math inline">\(\beta\)</span>,
+<span class="math inline">\(Q(\beta)\)</span> is convex and any finite
+solution from the equation is unique and corresponds to the global
+minimum of <span class="math inline">\(Q(\beta)\)</span>. Thus, we can
+use optimization methods to calculate <span class="math inline">\(\beta\)</span>.</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body" entry-spacing="0">
+<div id="ref-signorovitch2010" class="csl-entry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Signorovitch JE, Sikirica V, Erder MH, Xie J,
+Lu M, Hodgkins PS, et al. Comparative effectiveness without head-to-head
+trials. Pharmacoeconomics 2010;28:935–45.</div>
+</div>
+<div id="ref-phillippo2016a" class="csl-entry">
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">Phillippo D, Ades T, Dias S, Palmer S, Abrams
+KR, Welton N. NICE DSU technical support document 18: Methods for
+population-adjusted indirect comparisons in submissions to NICE
+2016.</div>
+</div>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
