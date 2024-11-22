@@ -1,6 +1,6 @@
 Title: Matching Adjusted Indirect Comparison
 Package: maicplus
-Version: 0.1.0
+Version: 0.1.1
 Date: 2024-10-29
 Authors@R: c(
    person(
@@ -44,7 +44,7 @@ License: Apache License 2.0
 URL: https://github.com/hta-pharma/maicplus/,
         https://hta-pharma.github.io/maicplus/
 BugReports: https://github.com/hta-pharma/maicplus/issues
-Depends: R (>= 3.6)
+Depends: R (>= 4.1)
 Imports: graphics, grDevices, stats, survival, lubridate, DescTools,
         MASS, boot, stringr, lmtest, sandwich
 Suggests: knitr, testthat (>= 2.0), ggplot2, rmarkdown, dplyr,
@@ -54,10 +54,10 @@ biocViews:
 Encoding: UTF-8
 Language: en-US
 LazyData: true
-RoxygenNote: 7.3.2.9000
+RoxygenNote: 7.3.2
 Config/testthat/edition: 3
 NeedsCompilation: no
-Packaged: 2024-11-07 11:31:16 UTC; gravesti
+Packaged: 2024-11-22 09:03:58 UTC; root
 Author: Gregory Chen [aut],
   Michael Seo [aut],
   Isaac Gravestock [aut, cre],
@@ -67,4 +67,4 @@ Author: Gregory Chen [aut],
   F. Hoffmann-La Roche AG [cph, fnd]
 Maintainer: Isaac Gravestock <isaac.gravestock@roche.com>
 Repository: CRAN
-Date/Publication: 2024-11-10 15:50:02 UTC
+Date/Publication: 2024-11-22 10:40:02 UTC

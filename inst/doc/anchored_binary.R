@@ -76,7 +76,7 @@ result$inferential$fit$res_AB
 #  pseudo_ipd$ARM <- stats::relevel(as.factor(pseudo_ipd$ARM), ref = "C")
 #  
 #  binobj_dat <- glm(RESPONSE ~ ARM, ipd, family = binomial(link = "logit"))
-#  binobj_dat_adj <- glm(RESPONSE ~ ARM, ipd, weights = weights, family = binomial(link = "logit")) |> suppressWarnings()
+#  binobj_dat_adj <- suppressWarnings(glm(RESPONSE ~ ARM, ipd, weights = weights, family = binomial(link = "logit")))
 #  binobj_agd <- glm(RESPONSE ~ ARM, pseudo_ipd, family = binomial(link = "logit"))
 #  
 #  bin_robust_cov <- sandwich::vcovHC(binobj_dat_adj, type = "HC3")
