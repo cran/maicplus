@@ -56,42 +56,42 @@ result$inferential$fit$model_after
 result$inferential$fit$res_AB
 
 ## ----eval = FALSE, echo = FALSE-----------------------------------------------
-#  # heuristic check
-#  # merge in adtte with ipd_matched
-#  ipd_matched <- weighted_data$data
-#  combined_data_tte <- ipd_matched %>%
-#    left_join(adtte_sat, by = c("USUBJID", "ARM"))
-#  pseudo_ipd <- pseudo_ipd_sat
-#  pseudo_ipd$weights <- 1
-#  
-#  combined_data_tte <- rbind(
-#    combined_data_tte[, colnames(pseudo_ipd)],
-#    pseudo_ipd
-#  )
-#  
-#  # Change the reference treatment to B
-#  combined_data_tte$ARM <- stats::relevel(as.factor(combined_data_tte$ARM), ref = "B")
-#  
-#  # Fit a Cox model with/without weights to estimate the HR
-#  unweighted_cox <- coxph(Surv(TIME, EVENT == 1) ~ ARM, data = combined_data_tte)
-#  weighted_cox <- coxph(Surv(TIME, EVENT == 1) ~ ARM,
-#    data = combined_data_tte, weights = combined_data_tte$weights, robust = TRUE
-#  )
-#  
-#  unweighted_cox
-#  weighted_cox
-#  
-#  kmobj <- survfit(Surv(TIME, EVENT) ~ ARM, combined_data_tte, conf.type = "log-log")
-#  kmobj_adj <- survfit(Surv(TIME, EVENT) ~ ARM,
-#    combined_data_tte,
-#    weights = combined_data_tte$weights, conf.type = "log-log"
-#  )
-#  
-#  # Derive median survival time
-#  medSurv <- medSurv_makeup(kmobj, legend = "before matching", time_scale = "day")
-#  medSurv_adj <- medSurv_makeup(kmobj_adj, legend = "after matching", time_scale = "day")
-#  medSurv_out <- rbind(medSurv, medSurv_adj)
-#  medSurv_out
+# # heuristic check
+# # merge in adtte with ipd_matched
+# ipd_matched <- weighted_data$data
+# combined_data_tte <- ipd_matched %>%
+#   left_join(adtte_sat, by = c("USUBJID", "ARM"))
+# pseudo_ipd <- pseudo_ipd_sat
+# pseudo_ipd$weights <- 1
+# 
+# combined_data_tte <- rbind(
+#   combined_data_tte[, colnames(pseudo_ipd)],
+#   pseudo_ipd
+# )
+# 
+# # Change the reference treatment to B
+# combined_data_tte$ARM <- stats::relevel(as.factor(combined_data_tte$ARM), ref = "B")
+# 
+# # Fit a Cox model with/without weights to estimate the HR
+# unweighted_cox <- coxph(Surv(TIME, EVENT == 1) ~ ARM, data = combined_data_tte)
+# weighted_cox <- coxph(Surv(TIME, EVENT == 1) ~ ARM,
+#   data = combined_data_tte, weights = combined_data_tte$weights, robust = TRUE
+# )
+# 
+# unweighted_cox
+# weighted_cox
+# 
+# kmobj <- survfit(Surv(TIME, EVENT) ~ ARM, combined_data_tte, conf.type = "log-log")
+# kmobj_adj <- survfit(Surv(TIME, EVENT) ~ ARM,
+#   combined_data_tte,
+#   weights = combined_data_tte$weights, conf.type = "log-log"
+# )
+# 
+# # Derive median survival time
+# medSurv <- medSurv_makeup(kmobj, legend = "before matching", time_scale = "day")
+# medSurv_adj <- medSurv_makeup(kmobj_adj, legend = "after matching", time_scale = "day")
+# medSurv_out <- rbind(medSurv, medSurv_adj)
+# medSurv_out
 
 ## -----------------------------------------------------------------------------
 weighted_data2 <- estimate_weights(

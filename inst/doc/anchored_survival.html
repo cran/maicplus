@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2024-11-22" />
+<meta name="date" content="2025-02-21" />
 
 <title>Anchored Survival Analysis</title>
 
@@ -49,8 +49,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -61,7 +62,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -338,7 +339,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Anchored Survival Analysis</h1>
-<h4 class="date">2024-11-22</h4>
+<h4 class="date">2025-02-21</h4>
 
 
 
@@ -405,7 +406,7 @@ specified.</p>
 ##     events%     rmean  se(rmean)    median  0.95LCL   0.95UCL
 ## 1 100.00000  2.564797 0.11366994  1.836467 1.644765  2.045808
 ## 2  38.00000  8.709690 0.35514766  7.587627 6.278691 10.288538
-## 3 100.00000  2.740925 0.18703870  1.815795 1.697526  2.292484
+## 3 100.00000  2.447736 0.17380451  1.786772 1.327555  2.200695
 ## 4  32.93885 10.166029 0.54999149 11.900015 7.815275 14.873786
 ## 5 100.00000  2.455272 0.09848888  1.851987 1.670540  2.009650
 ## 6  59.33333  4.303551 0.33672602  2.746131 2.261125  3.320857</code></pre>
@@ -419,12 +420,12 @@ the <code>coxph</code> models (i.e. hazard ratios and CI). Note that the
 p-values summarized are from <code>coxph</code> model Wald test and not
 from a log-rank test. Here is the overall summary.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>result<span class="sc">$</span>inferential<span class="sc">$</span>summary</span></code></pre></div>
-<pre><code>##          case        HR       LCL       UCL         pval
-## 1          AC 0.2216588 0.1867151 0.2631423 2.136650e-66
-## 2 adjusted_AC 0.1761521 0.1288651 0.2407912 1.319486e-27
-## 3          BC 0.5718004 0.4811989 0.6794607 2.143660e-10
-## 4          AB 0.3876507 0.3039348 0.4944253 2.270430e-14
-## 5 adjusted_AB 0.3080657 0.2155705 0.4402481 1.020976e-10</code></pre>
+<pre><code>##          case        HR       LCL       UCL        pval
+## 1          AC 0.2216588 0.1867151 0.2631423 2.13665e-66
+## 2 adjusted_AC 0.1527378 0.1117698 0.2087222 4.22565e-32
+## 3          BC 0.5718004 0.4811989 0.6794607 2.14366e-10
+## 4          AB 0.3876507 0.3039348 0.4944253 2.27043e-14
+## 5 adjusted_AB 0.2671173 0.1869658 0.3816295 4.10282e-13</code></pre>
 <p>Here are models and results before adjustment.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>result<span class="sc">$</span>inferential<span class="sc">$</span>fit<span class="sc">$</span>km_before</span></code></pre></div>
 <pre><code>## Call: survfit(formula = Surv(TIME, EVENT) ~ ARM, data = ipd, conf.type = km_conf_type)
@@ -465,36 +466,36 @@ from a log-rank test. Here is the overall summary.</p>
 ##     conf.type = km_conf_type)
 ## 
 ##       records   n events median 0.95LCL 0.95UCL
-## ARM=C     500 199  199.4   55.3    51.7    69.8
-## ARM=A     500 199   65.7  362.2   237.9   452.7</code></pre>
+## ARM=C     500 199  199.4   54.4    40.4      67
+## ARM=A     500 199   65.7  362.2   237.9     453</code></pre>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>result<span class="sc">$</span>inferential<span class="sc">$</span>fit<span class="sc">$</span>model_after</span></code></pre></div>
 <pre><code>## Call:
 ## coxph(formula = Surv(TIME, EVENT) ~ ARM, data = ipd, weights = weights, 
 ##     robust = TRUE)
 ## 
 ##         coef exp(coef) se(coef) robust se      z      p
-## ARMA -1.7364    0.1762   0.1475    0.1595 -10.89 &lt;2e-16
+## ARMA -1.8790    0.1527   0.1538    0.1593 -11.79 &lt;2e-16
 ## 
-## Likelihood ratio test=166.6  on 1 df, p=&lt; 2.2e-16
+## Likelihood ratio test=186.2  on 1 df, p=&lt; 2.2e-16
 ## n= 1000, number of events= 690</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>result<span class="sc">$</span>inferential<span class="sc">$</span>fit<span class="sc">$</span>res_AC</span></code></pre></div>
 <pre><code>## $est
-## [1] 0.1761521
+## [1] 0.1527378
 ## 
 ## $se
-## [1] 0.1594836
+## [1] 0.1593303
 ## 
 ## $ci_l
-## [1] 0.1288651
+## [1] 0.1117698
 ## 
 ## $ci_u
-## [1] 0.2407912
+## [1] 0.2087222
 ## 
 ## $pval
-## [1] 1.319486e-27</code></pre>
+## [1] 4.22565e-32</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a>result<span class="sc">$</span>inferential<span class="sc">$</span>fit<span class="sc">$</span>res_AB</span></code></pre></div>
 <pre><code>##             result             pvalue 
-## &quot;0.31[0.22; 0.44]&quot;           &quot;&lt;0.001&quot;</code></pre>
+## &quot;0.27[0.19; 0.38]&quot;           &quot;&lt;0.001&quot;</code></pre>
 </div>
 <div id="using-bootstrap-to-calculate-standard-errors" class="section level1">
 <h1>Using bootstrap to calculate standard errors</h1>
@@ -529,16 +530,16 @@ parameter <code>boot_ci_type</code>.</p>
 <span id="cb25-23"><a href="#cb25-23" tabindex="-1"></a></span>
 <span id="cb25-24"><a href="#cb25-24" tabindex="-1"></a>result_boot<span class="sc">$</span>inferential<span class="sc">$</span>fit<span class="sc">$</span>boot_res_AB</span></code></pre></div>
 <pre><code>## $est
-## [1] 0.3080657
+## [1] 0.2671173
 ## 
 ## $se
 ## [1] NA
 ## 
 ## $ci_l
-## [1] 0.2104255
+## [1] 0.1824555
 ## 
 ## $ci_u
-## [1] 0.4510123
+## [1] 0.3910633
 ## 
 ## $pval
 ## [1] NA</code></pre>

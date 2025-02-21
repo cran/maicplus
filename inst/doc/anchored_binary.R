@@ -62,42 +62,42 @@ result$inferential$fit$res_AC
 result$inferential$fit$res_AB
 
 ## ----echo = FALSE, eval = FALSE-----------------------------------------------
-#  # heuristic check
-#  # merge in adrs with ipd_matched
-#  
-#  ipd <- adrs_twt
-#  ipd$weights <- weighted_data$data$weights[match(weighted_data$data$USUBJID, ipd$USUBJID)]
-#  
-#  pseudo_ipd <- pseudo_adrs
-#  pseudo_ipd$weights <- 1
-#  
-#  # Change the reference treatment to C
-#  ipd$ARM <- stats::relevel(as.factor(ipd$ARM), ref = "C")
-#  pseudo_ipd$ARM <- stats::relevel(as.factor(pseudo_ipd$ARM), ref = "C")
-#  
-#  binobj_dat <- glm(RESPONSE ~ ARM, ipd, family = binomial(link = "logit"))
-#  binobj_dat_adj <- suppressWarnings(glm(RESPONSE ~ ARM, ipd, weights = weights, family = binomial(link = "logit")))
-#  binobj_agd <- glm(RESPONSE ~ ARM, pseudo_ipd, family = binomial(link = "logit"))
-#  
-#  bin_robust_cov <- sandwich::vcovHC(binobj_dat_adj, type = "HC3")
-#  bin_robust_coef <- lmtest::coeftest(binobj_dat_adj, vcov. = bin_robust_cov)
-#  bin_robust_ci <- lmtest::coefci(binobj_dat_adj, vcov. = bin_robust_cov)
-#  
-#  exp(summary(binobj_dat)$coef[2, "Estimate"])
-#  exp(summary(binobj_dat_adj)$coef[2, "Estimate"])
-#  
-#  bin_robust_ci
-#  exp(bin_robust_ci)
-#  
-#  res_AC <- res_BC <- list()
-#  res_AC$est <- bin_robust_coef[2, "Estimate"]
-#  res_AC$se <- bin_robust_coef[2, "Std. Error"]
-#  
-#  res_BC$est <- summary(binobj_agd)$coefficients[2, "Estimate"]
-#  res_BC$se <- summary(binobj_agd)$coefficients[2, "Std. Error"]
-#  
-#  res_AB <- bucher(res_AC, res_BC, conf_lv = 0.95)
-#  print(res_AB, exponentiate = TRUE)
+# # heuristic check
+# # merge in adrs with ipd_matched
+# 
+# ipd <- adrs_twt
+# ipd$weights <- weighted_data$data$weights[match(ipd$USUBJID, weighted_data$data$USUBJID)]
+# 
+# pseudo_ipd <- pseudo_adrs
+# pseudo_ipd$weights <- 1
+# 
+# # Change the reference treatment to C
+# ipd$ARM <- stats::relevel(as.factor(ipd$ARM), ref = "C")
+# pseudo_ipd$ARM <- stats::relevel(as.factor(pseudo_ipd$ARM), ref = "C")
+# 
+# binobj_dat <- glm(RESPONSE ~ ARM, ipd, family = binomial(link = "logit"))
+# binobj_dat_adj <- suppressWarnings(glm(RESPONSE ~ ARM, ipd, weights = weights, family = binomial(link = "logit")))
+# binobj_agd <- glm(RESPONSE ~ ARM, pseudo_ipd, family = binomial(link = "logit"))
+# 
+# bin_robust_cov <- sandwich::vcovHC(binobj_dat_adj, type = "HC3")
+# bin_robust_coef <- lmtest::coeftest(binobj_dat_adj, vcov. = bin_robust_cov)
+# bin_robust_ci <- lmtest::coefci(binobj_dat_adj, vcov. = bin_robust_cov)
+# 
+# exp(summary(binobj_dat)$coef[2, "Estimate"])
+# exp(summary(binobj_dat_adj)$coef[2, "Estimate"])
+# 
+# bin_robust_ci
+# exp(bin_robust_ci)
+# 
+# res_AC <- res_BC <- list()
+# res_AC$est <- bin_robust_coef[2, "Estimate"]
+# res_AC$se <- bin_robust_coef[2, "Std. Error"]
+# 
+# res_BC$est <- summary(binobj_agd)$coefficients[2, "Estimate"]
+# res_BC$se <- summary(binobj_agd)$coefficients[2, "Std. Error"]
+# 
+# res_AB <- bucher(res_AC, res_BC, conf_lv = 0.95)
+# print(res_AB, exponentiate = TRUE)
 
 ## -----------------------------------------------------------------------------
 weighted_data2 <- estimate_weights(

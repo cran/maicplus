@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 
-<meta name="date" content="2024-11-22" />
+<meta name="date" content="2025-02-21" />
 
 <title>Unanchored Binary Analysis</title>
 
@@ -49,8 +49,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -61,7 +62,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -144,6 +145,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
 
 
 
+<style type="text/css">
+
+div.csl-bib-body { }
+div.csl-entry {
+clear: both;
+margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+margin-left:2em;
+text-indent:-2em;
+}
+div.csl-left-margin {
+min-width:2em;
+float:left;
+}
+div.csl-right-inline {
+margin-left:2em;
+padding-left:1em;
+}
+div.csl-indent {
+margin-left: 2em;
+}
+</style>
 
 <style type="text/css">body {
 background-color: #fff;
@@ -338,7 +362,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <h1 class="title toc-ignore">Unanchored Binary Analysis</h1>
-<h4 class="date">2024-11-22</h4>
+<h4 class="date">2025-02-21</h4>
 
 
 
@@ -407,11 +431,11 @@ inferential. In the descriptive section, we have summaries of
 events.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>result<span class="sc">$</span>descriptive</span></code></pre></div>
 <pre><code>## $summary
-##   trt_ind treatment            type   n   events events_pct
-## 1       B         B Before matching 400 280.0000   70.00000
-## 2       A         A Before matching 500 390.0000   78.00000
-## 3       B         B  After matching 400 280.0000   70.00000
-## 4       A         A  After matching 500 142.8968   28.57935</code></pre>
+##   trt_ind treatment            type        n   events events_pct
+## 1       B         B Before matching 400.0000 280.0000   70.00000
+## 2       A         A Before matching 500.0000 390.0000   78.00000
+## 3       B         B  After matching 400.0000 280.0000   70.00000
+## 4       A         A  After matching 199.4265 142.8968   71.65386</code></pre>
 <p>In the inferential section, we have the fitted models stored
 (i.e. logistic regression) and the results from the <code>glm</code>
 models (i.e. odds ratios and CI). If other effect measures are needed
@@ -425,7 +449,8 @@ summary.</p>
 <p>Here are model and results before adjustment.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>result<span class="sc">$</span>inferential<span class="sc">$</span>fit<span class="sc">$</span>model_before</span></code></pre></div>
 <pre><code>## 
-## Call:  glm(formula = RESPONSE ~ ARM, family = glm_link, data = dat)
+## Call:  glm(formula = RESPONSE ~ ARM, family = binomial(link = glm_link), 
+##     data = dat)
 ## 
 ## Coefficients:
 ## (Intercept)         ARMA  
@@ -452,8 +477,8 @@ summary.</p>
 <p>Here are model and results after adjustment.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>result<span class="sc">$</span>inferential<span class="sc">$</span>fit<span class="sc">$</span>model_after</span></code></pre></div>
 <pre><code>## 
-## Call:  glm(formula = RESPONSE ~ ARM, family = glm_link, data = dat, 
-##     weights = weights)
+## Call:  glm(formula = RESPONSE ~ ARM, family = binomial(link = glm_link), 
+##     data = dat, weights = weights)
 ## 
 ## Coefficients:
 ## (Intercept)         ARMA  
@@ -524,6 +549,21 @@ parameter <code>boot_ci_type</code>. See <code>boot.ci</code> in
 ## 
 ## $pval
 ## [1] NA</code></pre>
+<p>Note that the bootstrap in unanchored analysis only uses resampling
+of internal IPD trial population and assumes there is no uncertainty in
+the comparator trial population (i.e. estimated mean outcomes). <span class="citation">[1]</span> Therefore, we recommend the use of sandwich
+estimators for the variance calculation in the unanchored analysis.</p>
+</div>
+<div id="references" class="section level1 unnumbered">
+<h1 class="unnumbered">References</h1>
+<div id="refs" class="references csl-bib-body" entry-spacing="0">
+<div id="ref-chandler" class="csl-entry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">Chandler CO, Proskorovsky I. Uncertain about
+uncertainty in matching-adjusted indirect comparisons? A simulation
+study to compare methods for variance estimation. Research Synthesis
+Methods 2024;15:1094–110. https://doi.org/<a href="https://doi.org/10.1002/jrsm.1759">https://doi.org/10.1002/jrsm.1759</a>.</div>
+</div>
+</div>
 </div>
 
 

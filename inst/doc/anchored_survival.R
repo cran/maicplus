@@ -62,53 +62,53 @@ result$inferential$fit$res_AC
 result$inferential$fit$res_AB
 
 ## ----echo = FALSE, eval = FALSE-----------------------------------------------
-#  # heuristic check
-#  # merge in adtte with ipd_matched
-#  
-#  ipd <- adtte_twt
-#  ipd$weights <- weighted_data$data$weights[match(weighted_data$data$USUBJID, ipd$USUBJID)]
-#  
-#  pseudo_ipd <- pseudo_ipd_twt
-#  pseudo_ipd$weights <- 1
-#  
-#  # Change the reference treatment to C
-#  ipd$ARM <- stats::relevel(as.factor(ipd$ARM), ref = "C")
-#  pseudo_ipd$ARM <- stats::relevel(as.factor(pseudo_ipd$ARM), ref = "C")
-#  
-#  # Fit a Cox model with/without weights to estimate the HR
-#  unweighted_cox <- coxph(Surv(TIME, EVENT == 1) ~ ARM, data = ipd)
-#  weighted_cox <- coxph(Surv(TIME, EVENT == 1) ~ ARM,
-#    data = ipd, weights = weights, robust = TRUE
-#  )
-#  coxobj_agd <- coxph(Surv(TIME, EVENT) ~ ARM, pseudo_ipd)
-#  
-#  unweighted_cox
-#  weighted_cox
-#  coxobj_agd
-#  
-#  res_AC_unadj <- as.list(summary(unweighted_cox)$coef)[c(1, 3)] # est, se
-#  res_AC <- as.list(summary(weighted_cox)$coef)[c(1, 4)] # est, robust se
-#  res_BC <- as.list(summary(coxobj_agd)$coef)[c(1, 3)] # est, se
-#  
-#  names(res_AC_unadj) <- names(res_AC) <- names(res_BC) <- c("est", "se")
-#  
-#  res_AB_unadj <- bucher(res_AC_unadj, res_BC, conf_lv = 0.95)
-#  res_AB <- bucher(res_AC, res_BC, conf_lv = 0.95)
-#  
-#  res_AB_unadj
-#  res_AB
-#  
-#  kmobj <- survfit(Surv(TIME, EVENT) ~ ARM, ipd, conf.type = "log-log")
-#  kmobj_adj <- survfit(Surv(TIME, EVENT) ~ ARM,
-#    ipd,
-#    weights = ipd$weights, conf.type = "log-log"
-#  )
-#  
-#  # Derive median survival time
-#  medSurv <- medSurv_makeup(kmobj, legend = "before matching", time_scale = "day")
-#  medSurv_adj <- medSurv_makeup(kmobj_adj, legend = "after matching", time_scale = "day")
-#  medSurv_out <- rbind(medSurv, medSurv_adj)
-#  medSurv_out
+# # heuristic check
+# # merge in adtte with ipd_matched
+# 
+# ipd <- adtte_twt
+# ipd$weights <- weighted_data$data$weights[match(ipd$USUBJID, weighted_data$data$USUBJID)]
+# 
+# pseudo_ipd <- pseudo_ipd_twt
+# pseudo_ipd$weights <- 1
+# 
+# # Change the reference treatment to C
+# ipd$ARM <- stats::relevel(as.factor(ipd$ARM), ref = "C")
+# pseudo_ipd$ARM <- stats::relevel(as.factor(pseudo_ipd$ARM), ref = "C")
+# 
+# # Fit a Cox model with/without weights to estimate the HR
+# unweighted_cox <- coxph(Surv(TIME, EVENT == 1) ~ ARM, data = ipd)
+# weighted_cox <- coxph(Surv(TIME, EVENT == 1) ~ ARM,
+#   data = ipd, weights = weights, robust = TRUE
+# )
+# coxobj_agd <- coxph(Surv(TIME, EVENT) ~ ARM, pseudo_ipd)
+# 
+# unweighted_cox
+# weighted_cox
+# coxobj_agd
+# 
+# res_AC_unadj <- as.list(summary(unweighted_cox)$coef)[c(1, 3)] # est, se
+# res_AC <- as.list(summary(weighted_cox)$coef)[c(1, 4)] # est, robust se
+# res_BC <- as.list(summary(coxobj_agd)$coef)[c(1, 3)] # est, se
+# 
+# names(res_AC_unadj) <- names(res_AC) <- names(res_BC) <- c("est", "se")
+# 
+# res_AB_unadj <- bucher(res_AC_unadj, res_BC, conf_lv = 0.95)
+# res_AB <- bucher(res_AC, res_BC, conf_lv = 0.95)
+# 
+# res_AB_unadj
+# res_AB
+# 
+# kmobj <- survfit(Surv(TIME, EVENT) ~ ARM, ipd, conf.type = "log-log")
+# kmobj_adj <- survfit(Surv(TIME, EVENT) ~ ARM,
+#   ipd,
+#   weights = ipd$weights, conf.type = "log-log"
+# )
+# 
+# # Derive median survival time
+# medSurv <- medSurv_makeup(kmobj, legend = "before matching", time_scale = "day")
+# medSurv_adj <- medSurv_makeup(kmobj_adj, legend = "after matching", time_scale = "day")
+# medSurv_out <- rbind(medSurv, medSurv_adj)
+# medSurv_out
 
 ## -----------------------------------------------------------------------------
 weighted_data2 <- estimate_weights(
